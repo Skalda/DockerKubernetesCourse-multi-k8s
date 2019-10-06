@@ -14,6 +14,16 @@ spec:
         - www.k8s-course.skalicky.dev
       secretName: k8s-course-skalicky-dev
   rules:
+    - http:
+        paths:
+          - path: /?(.*)
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /api/?(.*)
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 5000
     - host: k8s-course.skalicky.dev
       http:
         paths:
