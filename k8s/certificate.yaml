@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: k8s-course-skalicky-dev-tls
+spec:
+  secretName: k8s-course-skalicky-dev
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: k8s-course.skalicky.dev
+  dnsNames:
+    - k8s-course.skalicky.dev
+    - www.k8s-course.skalicky.dev
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - k8s-course.skalicky.dev
+          - www.k8s-course.skalicky.dev
